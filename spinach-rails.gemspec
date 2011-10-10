@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'capybara'
   gem.add_runtime_dependency 'spinach', '~> 0.1'
   gem.add_runtime_dependency 'rails', '>= 3'
+  gem.add_development_dependency 'aruba'
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
