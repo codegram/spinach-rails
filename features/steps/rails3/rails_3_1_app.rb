@@ -4,6 +4,10 @@ Feature 'Spinach works with a Rails 3.1 app' do
 
   include Aruba::Api
 
+  before_scenario do
+    @aruba_timeout_seconds = 100
+  end
+
   Given "I create a new rails 3 app" do
     create_rails_app('3.1')
   end
