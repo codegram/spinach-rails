@@ -41,9 +41,6 @@ Here's an example you can add to a file `features/support/clean_database.rb`:
 
 ## Contributing
 
-You can easily contribute to Spinach. Its codebase is simple and
-[extensively documented][documentation].
-
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add specs for it. This is important so we don't break it in a future
