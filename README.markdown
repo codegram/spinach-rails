@@ -20,6 +20,13 @@ necessary, you can also run:
 
     RAILS_ENV=test rake spinach:generate
 
+It is advised to explicitly load your environment in a file called `features/support/env.rb`,
+so you're able to run spinach from command-line. Here's an example:
+
+    require 'spinach-rails'
+    ENV['RAILS_ENV']='test'
+    require_relative '../../config/environment'
+
 ## Cleaning your database before each scenario
 
 You can take benefit from spinach's [hook architecture](http://rdoc.info/github/codegram/spinach/master/Spinach/Hooks)
