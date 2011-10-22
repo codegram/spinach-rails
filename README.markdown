@@ -13,12 +13,12 @@ Add `spinach-rails` to your Gemfile:
 Follow the instructions from [Spinach](http://github.com/codegram/spinach) to
 set up spinach and run the rake task:
 
-    rake spinach
+    RAILS_ENV=test rake spinach
 
 If you want spinach to automatically generate a step definition file when
 necessary, you can also run:
 
-    rake spinach:generate
+    RAILS_ENV=test rake spinach:generate
 
 ## Cleaning your database before each scenario
 
