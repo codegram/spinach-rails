@@ -27,6 +27,15 @@ class SpinachRails3_1 < Spinach::FeatureSteps
     last_exit_status.must_equal 0
   end
 
+  When  'I run the spinach rake task' do
+    run "rake spinach"
+  end
+
+  And "I add an environment file that load rails" do
+    write_file('features/support/env.rb',
+      "require_relative '../../config/application'")
+  end
+
   private
 
   def create_rails_app(version = '3.1')
@@ -67,9 +76,6 @@ class SpinachRails3_1 < Spinach::FeatureSteps
          end
        end
       ")
-    write_file('features/support/env.rb',
-      "require 'minitest/spec'
-      require_relative '../../config/application'")
   end
 
 end

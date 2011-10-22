@@ -3,9 +3,17 @@ Feature: Spinach works with a Rails 3.1 app
   As a developer
   I want spinach to be fully compatible with Rails 3.1
 
-  Scenario: Boot a bare Rails 3.1 app
+  Scenario: Spinach binary in a Rails 3.1 app
     Given I create a new rails 3 app
     And I add spinach-rails to it
     And I add some test features
+    And I add an environment file that load rails
     When I run spinach
+    Then the features should pass
+
+  Scenario: Spinach rake task in a Rails 3.1 app
+    Given I create a new rails 3 app
+    And I add spinach-rails to it
+    And I add some test features
+    When I run the spinach rake task
     Then the features should pass
