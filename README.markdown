@@ -10,12 +10,15 @@ Add `spinach-rails` to your Gemfile:
       gem 'spinach-rails'
     end
 
-Follow the instructions from [Spinach](http://github.com/codegram/spinach) and
-add the following into `features/support/rails.rb`:
+Follow the instructions from [Spinach](http://github.com/codegram/spinach) to
+set up spinach and run the rake task:
 
-    require 'spinach-rails'
-    ENV['RAILS_ENV']='test'
-    require_relative '../../config/environment'
+    rake spinach
+
+If you want spinach to automatically generate a step definition file when
+necessary, you can also run:
+
+    rake spinach:generate
 
 ## Cleaning your database before each scenario
 
@@ -23,7 +26,7 @@ You can take benefit from spinach's [hook architecture](http://rdoc.info/github/
 and use DatabaseCleaner to reset your database to a pristine state each time
 a scenario is executed.
 
-Here's an example you can append to `features/support/rails.rb`:
+Here's an example you can add to a file `features/support/clean_database.rb`:
 
     Spinach.hooks.before_scenario do
       DatabaseCleaner.start

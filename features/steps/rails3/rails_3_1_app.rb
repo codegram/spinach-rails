@@ -36,6 +36,26 @@ class SpinachRails3_1 < Spinach::FeatureSteps
       "require_relative '../../config/application'")
   end
 
+  And 'I add a test feature file without a steps file' do
+    write_file('features/test_feature.feature',
+      "Feature: Test feature
+         Scenario: Test scenario
+           Given I am running spinach
+           Then It should be all OK
+      ")
+  end
+
+  When  'I run the spinach:generate rake task' do
+    run "rake spinach:generate"
+  end
+
+  Then 'a feature steps file should have been generated' do
+    stop_processes!
+    in_current_dir do
+      File.exists?('features/steps/test_feature.rb').must_equal true
+    end
+  end
+
   private
 
   def create_rails_app(version = '3.1')
