@@ -28,6 +28,9 @@ a scenario is executed.
 
 Here's an example you can add to a file `features/support/clean_database.rb`:
 
+    require 'database_cleaner'
+    DatabaseCleaner.strategy = :truncation
+
     Spinach.hooks.before_scenario do
       DatabaseCleaner.start
     end
