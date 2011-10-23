@@ -33,7 +33,7 @@ class SpinachRails3_1 < Spinach::FeatureSteps
 
   And "I add an environment file that load rails" do
     write_file('features/support/env.rb',
-      "require_relative '../../config/application'")
+      "require_relative '../../config/environment'")
   end
 
   And 'I add a test feature file without a steps file' do
@@ -71,6 +71,11 @@ class SpinachRails3_1 < Spinach::FeatureSteps
     run 'bundle exec rails new rails_app'
     stop_processes!
     cd "rails_app"
+    write_file('config/routes.rb', "
+                RailsApp::Application.routes.draw do
+                  root to: redirect('/index.html')
+                end
+               ")
   end
 
   def add_spinach_rails
@@ -89,7 +94,7 @@ class SpinachRails3_1 < Spinach::FeatureSteps
     write_file('features/steps/test_feature.rb',
       "class TestFeature < Spinach::FeatureSteps
          Given 'I am running spinach' do
-           visit '/'
+           visit root_path
          end
          Then 'It should be all OK' do
            page.has_content?('Rails').must_equal true
