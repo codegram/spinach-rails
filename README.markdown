@@ -23,9 +23,9 @@ necessary, you can also run:
 It is advised to explicitly load your environment in a file called `features/support/env.rb`,
 so you're able to run spinach from command-line. Here's an example:
 
+    ENV["RAILS_ENV"] ||= 'test'
+    require_relative("../../config/environment")
     require 'spinach-rails'
-    ENV['RAILS_ENV']='test'
-    require_relative '../../config/environment'
 
 ## Cleaning your database before each scenario
 
