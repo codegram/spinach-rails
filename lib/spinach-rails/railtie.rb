@@ -8,7 +8,7 @@ module Spinach
           File.dirname(__FILE__), '..', '..', 'tasks/spinach.rake')
       )
     end
-    initializer "add_routes", after: :disable_dependency_loading do |app|
+    initializer "add_routes", after: :after_initialize do |app|
       routes = app.routes.url_helpers
       Spinach::FeatureSteps.send(:include, routes)
     end
