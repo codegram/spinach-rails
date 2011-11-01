@@ -12,6 +12,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'spinach', '>= 0.1.5.2'
   gem.add_runtime_dependency 'railties', '>= 3'
   gem.add_development_dependency 'aruba'
+  gem.add_development_dependency 'rails'
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
