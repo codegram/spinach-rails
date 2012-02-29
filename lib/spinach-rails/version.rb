@@ -1,5 +1,5 @@
 module Spinach
   module Rails
-    VERSION = "0.0.6.1"
+    VERSION = "1.0.0"
   end
 end
