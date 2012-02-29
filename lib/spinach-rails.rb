@@ -2,6 +2,7 @@ require "spinach-rails/version"
 
 require 'spinach'
 require 'capybara'
+require 'capybara/dsl'
 
 Spinach.hooks.before_run do
   require 'spinach/capybara'
