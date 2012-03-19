@@ -1,4 +1,7 @@
 # Spinach-rails
+
+[![Build Status](https://secure.travis-ci.org/codegram/spinach-rails.png?branch=master)](http://travis-ci.org/codegram/spinach-rails)
+
 Spinach-rails is a compatibility layer on top of [Spinach](http://codegram.github.com/spinach)
 to provide rails support.
 
