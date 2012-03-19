@@ -5,6 +5,7 @@ require 'capybara'
 require 'capybara/dsl'
 
 require "spinach-rails/railtie"
+require "spinach-rails/generators"
 
 Spinach.hooks.before_run do
   require 'spinach/capybara'
