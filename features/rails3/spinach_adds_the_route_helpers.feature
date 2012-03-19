@@ -8,6 +8,6 @@ Feature: Spinach adds the route helpers
     And I add spinach-rails to it
     And I add an initilizer that defines a constant
     And I add a test to assert if the constant is defined
-    And I add an environment file that load rails
+    And I run the generator
     When I run spinach
     Then the features should pass

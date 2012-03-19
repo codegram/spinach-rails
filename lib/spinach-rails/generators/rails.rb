@@ -4,7 +4,7 @@ require 'spinach'
 class Spinach::RailsGenerator < Rails::Generators::Base
   def create_environment_file
     create_file "features/support/env.rb", <<-FILE
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 require './config/environment'
 
 require 'minitest/spec'

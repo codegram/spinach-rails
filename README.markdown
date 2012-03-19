@@ -6,7 +6,7 @@ to provide rails support.
 
 Add `spinach-rails` to your Gemfile:
 
-    group :test do
+    group :test, :development do
       gem 'spinach-rails'
     end
 

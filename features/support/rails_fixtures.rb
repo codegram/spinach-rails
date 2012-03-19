@@ -18,16 +18,16 @@ module RailsFixtures
 
   When "I run spinach" do
     run "spinach"
+    stop_processes!
   end
 
   Then "the features should pass" do
-    stop_processes!
     last_exit_status.must_equal 0
   end
 
-  And "I add an environment file that load rails" do
-    write_file('features/support/env.rb',
-      "require_relative '../../config/environment'")
+  And "I run the generator" do
+    run "bundle exec rails g spinach:rails"
+    stop_processes!
   end
 
   private
@@ -54,7 +54,7 @@ module RailsFixtures
 
   def add_spinach_rails
     append_to_file("Gemfile",
-     "gem 'spinach-rails', group: :test, path: '#{Dir.pwd}'")
+     "gem 'spinach-rails', group: [:test, :development], path: '#{Dir.pwd}'")
     run "bundle install"
   end
 
