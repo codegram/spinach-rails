@@ -10,6 +10,10 @@ Add `spinach-rails` to your Gemfile:
       gem 'spinach-rails'
     end
 
+Generate your rails environment file with:
+
+    rails generate spinach:rails
+
 Follow the instructions from [Spinach](http://github.com/codegram/spinach) to
 set up spinach and run the rake task:
 
@@ -20,27 +24,16 @@ necessary, you can also run:
 
     RAILS_ENV=test rake spinach:generate
 
-It is advised to explicitly load your environment in a file called `features/support/env.rb`,
-so you're able to run spinach from command-line. Here's an example:
-
-    ENV["RAILS_ENV"] ||= 'test'
-    require_relative("../../config/environment")
-    require 'spinach-rails'
-
 ## Cleaning your database before each scenario
 
 You can take benefit from spinach's [hook architecture](http://rdoc.info/github/codegram/spinach/master/Spinach/Hooks)
 and use DatabaseCleaner to reset your database to a pristine state each time
 a scenario is executed.
 
-Here's an example you can add to a file `features/support/clean_database.rb`:
+Here's an example you can add to your env `features/support/env.rb` file:
 
     require 'database_cleaner'
     DatabaseCleaner.strategy = :truncation
-
-    Spinach.hooks.before_scenario do
-      DatabaseCleaner.start
-    end
 
     Spinach.hooks.after_scenario do
       DatabaseCleaner.clean
