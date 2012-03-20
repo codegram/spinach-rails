@@ -1,7 +1,0 @@
-env:
- - RBXOPT=-X19 JRUBY_OPTS="--1.9"
-rvm:
-  - 1.9.2
-  - 1.9.3
-  # - rbx-2.0
-  # - jruby
