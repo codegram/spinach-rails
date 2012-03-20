@@ -9,7 +9,5 @@ require "spinach-rails/railtie"
 Spinach.hooks.before_run do
   require 'spinach/capybara'
   require 'capybara/rails'
-  Spinach::FeatureSteps.class_eval do
-    include Spinach::FeatureSteps::Capybara
-  end
+  Spinach::FeatureSteps.include Spinach::FeatureSteps::Capybara
 end

@@ -11,7 +11,7 @@ module Spinach
 
     initializer "add_routes", after: :after_initialize do |app|
       routes = app.routes.url_helpers
-      Spinach::FeatureSteps.send(:include, routes)
+      Spinach::FeatureSteps.include routes
     end
 
     generators do

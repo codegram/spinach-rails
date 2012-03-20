@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'http://github.com/codegram/spinach-rails'
 
   gem.add_runtime_dependency 'capybara'
-  gem.add_runtime_dependency 'spinach', '>= 0.1.5.2'
+  gem.add_runtime_dependency 'spinach', '>= 0.3.2'
   gem.add_runtime_dependency 'railties', '>= 3'
   gem.add_development_dependency 'aruba'
   gem.add_development_dependency 'rails'
