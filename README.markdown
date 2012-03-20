@@ -15,7 +15,7 @@ Add `spinach-rails` to your Gemfile:
 
 Generate your rails environment file with:
 
-    rails generate spinach:rails
+    rails generate spinach
 
 Follow the instructions from [Spinach](http://github.com/codegram/spinach) to
 set up spinach and run the rake task:

@@ -1,7 +1,7 @@
 require 'rails'
 require 'spinach'
 
-class Spinach::RailsGenerator < Rails::Generators::Base
+class SpinachGenerator < Rails::Generators::Base
   def create_environment_file
     create_file "features/support/env.rb", <<-FILE
 ENV['RAILS_ENV'] = 'test'

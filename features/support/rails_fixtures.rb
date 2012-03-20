@@ -26,7 +26,7 @@ module RailsFixtures
   end
 
   And "I run the generator" do
-    run "bundle exec rails g spinach:rails"
+    run "bundle exec rails g spinach"
     stop_processes!
   end
 
