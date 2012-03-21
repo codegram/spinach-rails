@@ -13,6 +13,8 @@ require 'minitest/spec'
 # DatabaseCleaner.strategy :truncation
 #
 # Spinach.hooks.before_scenario{ DatabaseCleaner.clean }
+#
+# Spinach.config.save_and_open_page_on_failure = true
     FILE
   end
 end
