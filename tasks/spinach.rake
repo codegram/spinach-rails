@@ -9,5 +9,5 @@ end
 
 desc 'runs the whole spinach suite'
 task :spinach => :spinach_env do
-  system 'spinach'
+  ruby '-S spinach'
 end
