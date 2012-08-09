@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{spinach-rails adds Rails support to spinach}
   gem.homepage      = 'http://github.com/codegram/spinach-rails'
 
-  gem.add_runtime_dependency 'capybara', '>= 1.0'
+  gem.add_runtime_dependency 'capybara', '~> 1'
   gem.add_runtime_dependency 'spinach', '>= 0.4'
   gem.add_runtime_dependency 'railties', '>= 3'
   gem.add_development_dependency 'aruba'
