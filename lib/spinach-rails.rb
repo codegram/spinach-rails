@@ -11,3 +11,7 @@ Spinach.hooks.before_run do
   require 'capybara/rails'
   Spinach::FeatureSteps.include Spinach::FeatureSteps::Capybara
 end
+
+Spinach.hooks.before_scenario do
+  ActionMailer::Base.deliveries.clear
+end
