@@ -5,7 +5,7 @@ module RailsFixtures
   include Aruba::Api
 
   Given "I create a new rails 3 app" do
-    create_rails_app('3.1')
+    create_rails_app('3.2')
   end
 
   And "I add spinach-rails to it" do
@@ -32,7 +32,7 @@ module RailsFixtures
 
   private
 
-  def create_rails_app(version = '3.1')
+  def create_rails_app(version = '3.2')
     @aruba_timeout_seconds = 100
     write_file(
       'Gemfile',

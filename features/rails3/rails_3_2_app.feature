@@ -1,7 +1,7 @@
-Feature: Spinach works with a Rails 3.1 app
-  In order to use spinach with Rails 3.1
+Feature: Spinach works with a Rails 3.2 app
+  In order to use spinach with Rails 3.2
   As a developer
-  I want spinach to be fully compatible with Rails 3.1
+  I want spinach to be fully compatible with Rails 3.2
 
   Scenario: Spinach binary
     Given I create a new rails 3 app

@@ -1,8 +1,8 @@
 require 'aruba/api'
 
-class SpinachRails3_1 < Spinach::FeatureSteps
+class SpinachRails3_2 < Spinach::FeatureSteps
 
-  feature 'Spinach works with a Rails 3.1 app'
+  feature 'Spinach works with a Rails 3.2 app'
   include RailsFixtures
   include Aruba::Api
 
