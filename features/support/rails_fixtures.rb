@@ -79,11 +79,17 @@ module RailsFixtures
          Scenario: Test scenario
            Given I am running spinach
            Then It should be all OK
+         Scenario: Mounted engine test scenario
+           Given the test app has mounted an engine
+           Then It should be all OK
       ")
     write_file('features/steps/test_feature.rb',
       "class TestFeature < Spinach::FeatureSteps
          Given 'I am running spinach' do
            visit root_path
+         end
+         Given 'the test app has mounted an engine' do
+           visit rails_engine.root_path
          end
          Then 'It should be all OK' do
            page.has_content?('Rails').must_equal true
