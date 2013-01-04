@@ -1,4 +1,5 @@
 require 'aruba/api'
+require 'pry'
 
 module RailsFixtures
   include Spinach::DSL
@@ -35,7 +36,7 @@ module RailsFixtures
     run 'bundle exec rails plugin new rails_engine --mountable'
     stop_processes!
     cd "rails_engine"
-    write_file('aruba/rails_engine/config/routes.rb', "
+    write_file('config/routes.rb', "
                 RailsEngine::Engine.routes.draw do
                   root to: redirect('/index.html')
                 end
@@ -59,21 +60,16 @@ module RailsFixtures
     run 'bundle exec rails new rails_app'
     stop_processes!
     cd "rails_app"
-
-    append_to_file("Gemfile",
-      "gem 'rails_engine', :path => '#{Dir.pwd}/tmp/aruba/rails_engine'")
-    append_to_file("Gemfile",
-      "gem 'spinach-rails', group: [:test, :development], path: '#{Dir.pwd}'")
-
-    run "bundle"
-    stop_processes!
-
     write_file('config/routes.rb', "
                 RailsApp::Application.routes.draw do
                   root to: redirect('/index.html')
                   mount RailsEngine::Engine, :at => '/'
                 end
                ")
+    append_to_file("Gemfile",
+      "gem 'rails_engine', :path => '#{Dir.pwd}/tmp/aruba/rails_engine'\n")
+    run "bundle install"
+    stop_processes!
   end
 
 
