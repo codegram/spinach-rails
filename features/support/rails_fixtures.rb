@@ -1,5 +1,4 @@
 require 'aruba/api'
-require 'pry'
 
 module RailsFixtures
   include Spinach::DSL
@@ -32,17 +31,19 @@ module RailsFixtures
   end
 
   private
-  def create_mountable_engine(version = '3.2')
-    run 'bundle exec rails plugin new rails_engine --mountable'
+  def create_and_mount_engine(version = '3.2')
+    run 'bundle exec rails plugin new vendor/plugins/rails_engine --mountable'
     stop_processes!
-    cd "rails_engine"
-    write_file('config/routes.rb', "
+    write_file('vendor/plugins/rails_engine/config/routes.rb', "
                 RailsEngine::Engine.routes.draw do
                   root to: redirect('/index.html')
                 end
                ")
+    append_to_file("Gemfile",
+      "gem 'rails_engine', :path => 'vendor/plugins/rails_engine'\n")
     stop_processes!
-    cd ".."
+    run "bundle install"
+    stop_processes!
   end
 
   def create_rails_app(version = '3.2')
@@ -54,9 +55,6 @@ module RailsFixtures
       ")
     run "bundle install"
     run "rm -fR rails_app"
-    run "rm -fR rails_engine"
-    stop_processes!
-    create_mountable_engine(version)
     run 'bundle exec rails new rails_app'
     stop_processes!
     cd "rails_app"
@@ -66,13 +64,8 @@ module RailsFixtures
                   mount RailsEngine::Engine, :at => '/'
                 end
                ")
-    append_to_file("Gemfile",
-      "gem 'rails_engine', :path => '#{Dir.pwd}/tmp/aruba/rails_engine'\n")
-    run "bundle install"
-    stop_processes!
+    create_and_mount_engine(version)
   end
-
-
 
   def add_spinach_rails
     append_to_file("Gemfile",
