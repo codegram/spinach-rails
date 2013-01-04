@@ -31,6 +31,18 @@ module RailsFixtures
   end
 
   private
+  def create_mountable_engine(version = '3.2')
+    run 'bundle exec rails plugin new rails_engine --mountable'
+    stop_processes!
+    cd "rails_engine"
+    write_file('aruba/rails_engine/config/routes.rb', "
+                RailsEngine::Engine.routes.draw do
+                  root to: redirect('/index.html')
+                end
+               ")
+    stop_processes!
+    cd ".."
+  end
 
   def create_rails_app(version = '3.2')
     @aruba_timeout_seconds = 100
@@ -41,16 +53,30 @@ module RailsFixtures
       ")
     run "bundle install"
     run "rm -fR rails_app"
+    run "rm -fR rails_engine"
     stop_processes!
+    create_mountable_engine(version)
     run 'bundle exec rails new rails_app'
     stop_processes!
     cd "rails_app"
+
+    append_to_file("Gemfile",
+      "gem 'rails_engine', :path => '#{Dir.pwd}/tmp/aruba/rails_engine'")
+    append_to_file("Gemfile",
+      "gem 'spinach-rails', group: [:test, :development], path: '#{Dir.pwd}'")
+
+    run "bundle"
+    stop_processes!
+
     write_file('config/routes.rb', "
                 RailsApp::Application.routes.draw do
                   root to: redirect('/index.html')
+                  mount RailsEngine::Engine, :at => '/'
                 end
                ")
   end
+
+
 
   def add_spinach_rails
     append_to_file("Gemfile",
