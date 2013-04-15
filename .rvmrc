@@ -1,1 +1,1 @@
-rvm --create use 1.9.3@spinach-rails
+rvm --create use 2.0.0@spinach-rails
