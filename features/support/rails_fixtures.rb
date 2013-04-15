@@ -38,6 +38,7 @@ module RailsFixtures
       'Gemfile',
       " source :rubygems
         gem 'rails', '#{version}'
+        gem 'sqlite3'
       ")
     run "bundle install"
     run "rm -fR rails_app"
