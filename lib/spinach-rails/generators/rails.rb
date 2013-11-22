@@ -11,7 +11,7 @@ require 'minitest/spec'
 
 module Spinach
   class FeatureSteps
-    known_engines = ObjectSpace.enum_for(:each_object, ::Rails::Railtie.singleton_class).to_a
+    known_engines = Rails::Engine.descendants
     engines_with_routes = known_engines.select{ |engine|
       engine.respond_to?(:routes) && engine.routes.named_routes.routes.present?
     }
