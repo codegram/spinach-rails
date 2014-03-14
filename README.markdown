@@ -25,6 +25,17 @@ necessary, you can also run:
 
     RAILS_ENV=test rake spinach:generate
 
+## Configuration
+
+For custom configuration you can create `config/spinach.yml` file.
+
+It may look like this:
+
+    features_path: my_spinach_features
+    step_definitions_path: integration/steps
+    support_path: integration/support
+    fail_fast: false
+
 ## Cleaning your database before each scenario
 
 You can take benefit from spinach's [hook architecture](http://rdoc.info/github/codegram/spinach/master/Spinach/Hooks)
