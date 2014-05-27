@@ -13,5 +13,5 @@ Spinach.hooks.before_run do
 end
 
 Spinach.hooks.before_scenario do
-  ActionMailer::Base.deliveries.clear
+  ActionMailer::Base.deliveries.clear if defined?(ActionMailer::Base)
 end
