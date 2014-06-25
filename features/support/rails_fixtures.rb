@@ -31,6 +31,20 @@ module RailsFixtures
   end
 
   private
+  def create_and_mount_engine(version = '3.2')
+    run 'bundle exec rails plugin new vendor/plugins/rails_engine --mountable'
+    stop_processes!
+    write_file('vendor/plugins/rails_engine/config/routes.rb', "
+                RailsEngine::Engine.routes.draw do
+                  root to: redirect('/index.html')
+                end
+               ")
+    append_to_file("Gemfile",
+      "gem 'rails_engine', :path => 'vendor/plugins/rails_engine'\n")
+    stop_processes!
+    run "bundle install"
+    stop_processes!
+  end
 
   def create_rails_app(version = '3.2')
     @aruba_timeout_seconds = 100
@@ -42,15 +56,16 @@ module RailsFixtures
       ")
     run "bundle install"
     run "rm -fR rails_app"
-    stop_processes!
     run 'bundle exec rails new rails_app'
     stop_processes!
     cd "rails_app"
     write_file('config/routes.rb', "
                 RailsApp::Application.routes.draw do
                   root to: redirect('/index.html')
+                  mount RailsEngine::Engine, :at => '/'
                 end
                ")
+    create_and_mount_engine(version)
   end
 
   def add_spinach_rails
@@ -65,11 +80,17 @@ module RailsFixtures
          Scenario: Test scenario
            Given I am running spinach
            Then It should be all OK
+         Scenario: Mounted engine test scenario
+           Given the test app has mounted an engine
+           Then It should be all OK
       ")
     write_file('features/steps/test_feature.rb',
       "class TestFeature < Spinach::FeatureSteps
          Given 'I am running spinach' do
            visit root_path
+         end
+         Given 'the test app has mounted an engine' do
+           visit rails_engine.root_path
          end
          Then 'It should be all OK' do
            page.has_content?('Rails').must_equal true
